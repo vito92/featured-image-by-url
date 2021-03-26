@@ -1,0 +1,8 @@
+{
+    "name": "vito92/featured-image-by-url",
+    "description": "fork featured-image-by-url with additional filter for image sources",
+    "type": "package",
+    "license": "GNU General Public License v2.0",
+    "minimum-stability": "stable",
+    "require": {}
+}
