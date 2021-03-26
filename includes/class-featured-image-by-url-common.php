@@ -318,6 +318,7 @@ class Featured_Image_By_URL_Common {
 	 */
 	function knawatfibu_replace_attachment_image_src( $image, $attachment_id, $size, $icon ) {
 		global $knawatfibu;
+        $dimensions = $this->knawatfibu_get_image_size( $size );
 		if( false !== strpos( $attachment_id, '_knawatfibu_wcgallary' ) ){
 			$attachment = explode( '__', $attachment_id );
 			$image_num  = $attachment[1];
@@ -330,6 +331,7 @@ class Featured_Image_By_URL_Common {
 						return false;
 					}
 					$url = $gallery_images[$image_num]['url'];
+                    $url = apply_filters( 'knawatfibu_replace_attachment_image_gallery_src', $url, $attachment_id, $size, $icon, $dimensions);
 					
 					if( apply_filters( 'knawatfibu_user_resized_images', true ) ){
 						$url = $knawatfibu->common->knawatfibu_resize_image_on_the_fly( $url, $size );	
@@ -367,6 +369,8 @@ class Featured_Image_By_URL_Common {
 				$image_url = $image_data['img_url'];
 				$width = isset( $image_data['width'] ) ? $image_data['width'] : '';
 				$height = isset( $image_data['height'] ) ? $image_data['height'] : '';
+                
+                $image_url = apply_filters( 'knawatfibu_replace_attachment_image_src', $image_url, $attachment_id, $size, $icon, $dimensions);
 
 				// Run Photon Resize Magic.
 				if( apply_filters( 'knawatfibu_user_resized_images', true ) ){
